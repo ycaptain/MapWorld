@@ -2,6 +2,18 @@
   "name": "map-world",
   "version": "1.0.0",
   "main": "main.js",
+  "scripts": {
+    "setup": "npm run reset && yarn install && cat VERSION > .repo_version",
+    "reset": "rm -rf node_modules"
+  },
+  "engines": {
+    "node": ">=12.14.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "author": {
     "name": "YCaptain",
     "email": "cz.ycaptain@gmail.com",
