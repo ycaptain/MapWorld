@@ -3,8 +3,20 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
+    "precommit": "lint-staged",
     "setup": "npm run reset && yarn install && cat VERSION > .repo_version",
     "reset": "rm -rf node_modules"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "app/**/*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "engines": {
     "node": ">=12.14.0"
@@ -28,5 +40,10 @@
     "gis",
     "electron"
   ],
-  "homepage": "https://github.com/YCaptain/MapWorld#readme"
+  "homepage": "https://github.com/YCaptain/MapWorld#readme",
+  "devDependencies": {
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.2",
+    "typescript": "^3.7.5"
+  }
 }
