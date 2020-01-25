@@ -1,0 +1,20 @@
+{
+  "name": "map-world",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": {
+    "name": "YCaptain",
+    "email": "cz.ycaptain@gmail.com",
+    "url": "https://github.com/YCaptain"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YCaptain/MapWorld/issues"
+  },
+  "keywords": [
+    "map",
+    "gis",
+    "electron"
+  ],
+  "homepage": "https://github.com/YCaptain/MapWorld#readme"
+}
