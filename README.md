@@ -7,7 +7,7 @@
   - [Preparation](#Preparation)
     - [Mandatory](#Mandatory)
     - [Strongly Recommendation](#Strongly-Recommendation)
-  - [Dependencies](#Dependencies)
+  - [Installation](#Installation)
   - [Initialize VSCode](#Initialize-VSCode)
   - [Push your code](#Push-your-code)
 
@@ -39,13 +39,41 @@ WIP
   - [zsh-better-npm-completion](https://github.com/lukechilds/zsh-better-npm-completion)
 - [Fira Code](https://github.com/tonsky/FiraCode) / [Hack](https://github.com/source-foundry/Hack)
 
-### Dependencies
+## Installation
 
 After cloned this project, you need to execute the following command, which would install all the dependencies and be initialized.
 
 ```bash
 # run at root of this project
 yarn setup
+```
+
+After all modules installed, you can run the application
+
+```bash
+yarn start
+```
+
+or run and watch changes
+
+```bash
+yarn dev
+```
+
+or package it
+
+```bash
+# mac
+yarn package
+
+# windows
+yarn package-win
+
+# linux
+yarn package-linux
+
+# all platforms
+yarn package-all
 ```
 
 ### Initialize VSCode
