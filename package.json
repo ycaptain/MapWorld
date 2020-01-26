@@ -3,23 +3,38 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
+    "commit": "git-cz",
+    "build-main": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "npm run build-main && npm run build-renderer",
+    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
+    "start": "cross-env NODE_ENV=production electron ./app/",
+    "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./app/main.development",
+    "dev": "npm run hot-server -- --start-hot",
     "precommit": "lint-staged",
     "setup": "npm run reset && yarn install && cat VERSION > .repo_version",
-    "reset": "rm -rf node_modules"
+    "cleanup": "rm -rf node_modules"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
     "app/**/*.ts": [
-      "eslint --fix",
+      "tslint --fix",
       "git add"
     ]
   },
   "engines": {
-    "node": ">=12.14.0"
+    "node": ">=12.14.0",
+    "npm": ">=6.x"
   },
   "commitlint": {
     "extends": [
@@ -38,12 +53,81 @@
   "keywords": [
     "map",
     "gis",
-    "electron"
+    "electron",
+    "react"
   ],
   "homepage": "https://github.com/YCaptain/MapWorld#readme",
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/enzyme": "^3.1.1",
+    "@types/history": "^4.5.2",
+    "@types/jest": "^22.0.0",
+    "@types/node": "^13.5.0",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "16.0.3",
+    "@types/react-hot-loader": "^3.0.4",
+    "@types/react-redux": "^5.0.4",
+    "@types/react-router": "^4.0.11",
+    "@types/react-router-dom": "^4.3.5",
+    "@types/react-router-redux": "^5.0.2",
+    "@types/redux-logger": "^3.0.0",
+    "@types/sinon": "^4.0.0",
+    "asar": "^0.14.0",
+    "boiler-room-custodian": "^0.6.2",
+    "commitizen": "^4.0.3",
+    "concurrently": "^3.1.0",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "css-modules-require-hook": "^4.0.6",
+    "cz-conventional-changelog": "^3.0.2",
+    "devtron": "^1.4.0",
+    "electron": "1.8.4",
+    "electron-builder": "^19.8.0",
+    "electron-builder-http": "^19.15.0",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-react-devtools": "^0.5.3",
+    "electron-redux-devtools": "^0.3.4",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.24.1",
     "husky": "^4.2.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.0.4",
+    "json-loader": "^0.5.4",
     "lint-staged": "^10.0.2",
-    "typescript": "^3.7.5"
+    "node-sass": "^4.1.1",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "react-test-renderer": "^16.0.0",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^6.0.6",
+    "sinon": "^4.0.0",
+    "spectron": "^3.4.1",
+    "style-loader": "^0.19.0",
+    "ts-loader": "^3.1.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.4.3",
+    "typescript": "^3.7.5",
+    "url-loader": "^0.6.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-middleware": "^2.0.3",
+    "webpack-hot-middleware": "^2.13.2",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "electron-debug": "^1.1.0",
+    "font-awesome": "^4.7.0",
+    "history": "^4.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.1",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "source-map-support": "^0.5.0"
   }
 }
