@@ -62,19 +62,12 @@ If these steps in front of the right to carry out, open any JS or TS file, ESLin
 
 ### Commit Message
 
-Install [commitizen/cz-cli](https://github.com/commitizen/cz-cli) globally:
-
-```bash
-npm install -g commitizen cz-conventional-changelog
-echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
-```
-
 All commit messages conform to [Conventional Commits Specification](https://www.conventionalcommits.org/)（[type](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)）
 
 Run the following command, and follow the tips to finish commit:
 
 ```bash
-git cz
+yarn cz
 ```
 
 ### Others
