@@ -4,10 +4,10 @@
   "main": "main.js",
   "scripts": {
     "cz": "git-cz",
-    "build-main": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
-    "build-renderer": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
+    "build-main": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config ./config/webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config ./config/webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
-    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
+    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 ./config/server.js",
     "start": "cross-env NODE_ENV=production electron ./app/",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./app/main.development",
     "dev": "npm run hot-server -- --start-hot",
@@ -23,8 +23,7 @@
     "productName": "MapWorld",
     "appId": "io.github.YCaptain.MapWorld",
     "dmg": {
-      "contents": [
-        {
+      "contents": [{
           "x": 410,
           "y": 150,
           "type": "link",
@@ -48,6 +47,9 @@
     "directories": {
       "buildResources": "resources",
       "output": "release"
+    },
+    "mac": {
+      "target": "pkg"
     },
     "win": {
       "target": "nsis"
