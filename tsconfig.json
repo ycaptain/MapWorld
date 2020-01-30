@@ -10,9 +10,7 @@
       "dom.iterable",
       "scripthost"
     ],
-    "types": [
-      "node"
-    ],
+    "types": [],
     "typeRoots": [
       "../node_modules/@types"
     ],
