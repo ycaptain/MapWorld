@@ -7,6 +7,8 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
 
 module.exports = merge(baseConfig, {
+  mode: 'production',
+
   devtool: 'source-map',
 
   entry: ['./app/main.development'],
@@ -24,11 +26,6 @@ module.exports = merge(baseConfig, {
     //   'require("source-map-support").install();',
     //   { raw: true, entryOnly: false }
     // ),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
   ],
 
   /**
