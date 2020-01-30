@@ -11,6 +11,8 @@ const baseConfig = require('./webpack.config.base');
 const port = process.env.PORT || 3000;
 
 module.exports = merge(baseConfig, {
+  mode: 'development',
+
   devtool: 'inline-source-map',
 
   entry: [
@@ -23,6 +25,12 @@ module.exports = merge(baseConfig, {
     publicPath: `http://localhost:${port}/dist/`
   },
 
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    }
+  },
+
   module: {
     // preLoaders: [
     //   {
@@ -31,7 +39,8 @@ module.exports = merge(baseConfig, {
     //     exclude: /node_modules/
     //   }
     // ],
-    loaders: [
+    rules: [
+
       {
         test: /\.global\.css$/,
         loaders: [

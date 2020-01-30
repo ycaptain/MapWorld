@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
 
 module.exports = merge(baseConfig, {
+  mode: 'production',
+
   devtool: 'cheap-module-source-map',
 
   entry: [
@@ -17,12 +19,12 @@ module.exports = merge(baseConfig, {
   ],
 
   output: {
-    path: path.join(__dirname, 'app/dist'),
+    path: path.join(__dirname, '../app/dist'),
     publicPath: '../dist/'
   },
 
   module: {
-    loaders: [
+    rules: [
       // Extract all .global.css to style.css as is
       {
         test: /\.(scss|sass)$/,
@@ -102,11 +104,6 @@ module.exports = merge(baseConfig, {
     // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
     // https://github.com/webpack/webpack/issues/864
     new webpack.optimize.OccurrenceOrderPlugin(),
-
-    // NODE_ENV should be production so that modules do not perform certain development checks
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
 
     new ExtractTextPlugin('style.css'),
 
