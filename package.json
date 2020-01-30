@@ -44,6 +44,7 @@
       "main.js.map",
       "package.json"
     ],
+    "extraResources": "py",
     "directories": {
       "buildResources": "resources",
       "output": "release"
@@ -109,7 +110,6 @@
     "@types/enzyme": "^3.1.1",
     "@types/history": "^4.5.2",
     "@types/jest": "^22.0.0",
-    "@types/node": "^13.5.0",
     "@types/react": "^16.0.5",
     "@types/react-dom": "16.9.5",
     "@types/react-hot-loader": "^3.0.4",
