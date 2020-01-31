@@ -13,10 +13,10 @@
     "dev": "npm run hot-server -- --start-hot",
     "precommit": "lint-staged",
     "setup": "npm run cleanup && yarn install",
-    "package": "npm run build && electron-builder --publish never",
-    "package-win": "npm run build && electron-builder --win --x64",
-    "package-linux": "npm run build && electron-builder --linux",
-    "package-all": "npm run build && electron-builder -mwl",
+    "package": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --publish never",
+    "package-win": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --x64",
+    "package-linux": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
+    "package-all": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
     "cleanup": "rm -rf node_modules"
   },
   "build": {
