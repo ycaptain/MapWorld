@@ -37,7 +37,6 @@ WIP
   - [spaceship](https://denysdovhan.com/spaceship-prompt/)
   - [Powerline fonts](https://github.com/powerline/fonts)
   - [zsh-better-npm-completion](https://github.com/lukechilds/zsh-better-npm-completion)
-- [Fira Code](https://github.com/tonsky/FiraCode) / [Hack](https://github.com/source-foundry/Hack)
 
 ## Installation
 
@@ -48,9 +47,11 @@ After cloned this project, you need to execute the following command, which woul
 yarn setup
 ```
 
-After all modules installed, you can run the application
+After all modules installed, you can build and run the application
 
 ```bash
+yarn build
+
 yarn start
 ```
 
