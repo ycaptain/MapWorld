@@ -23,8 +23,8 @@ WIP
 
 #### Mandatory
 
-- [node.js](https://github.com/nodejs/Release) 12.14 or later，or install [nvm](https://github.com/nvm-sh/nvm#install--update-script), toggle [automatically call nvm use](https://github.com/nvm-sh/nvm#automatically-call-nvm-use)
-- [yarn](https://yarnpkg.com/lang/en/) 1.21 or later
+- install [nvm](https://github.com/nvm-sh/nvm#install--update-script), toggle [automatically call nvm use](https://github.com/nvm-sh/nvm#automatically-call-nvm-use), or use nvm install [node.js](https://github.com/nodejs/Release) 12.14 or later
+- install [yarn](https://yarnpkg.com/lang/en/) 1.21 or later
 
 #### Strongly Recommendation
 
