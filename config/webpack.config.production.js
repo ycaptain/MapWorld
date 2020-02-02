@@ -27,7 +27,7 @@ module.exports = merge(baseConfig, {
     rules: [
       // Extract all .global.css to style.css as is
       {
-        test: /\.(scss|sass)$/,
+        test: /\.less$/,
         use: ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
@@ -38,9 +38,34 @@ module.exports = merge(baseConfig, {
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }]
-        })
+        }),
+        exclude: /node_modules\/antd/
+      },
+
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              //modules: true,
+              importLoaders: 1,
+              localIdentName: '[local]',
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                'primary-color': '#1DA57A',
+              },
+              javascriptEnabled: true,
+            }
+          }]
+        }),
+        include: /node_modules\/antd/
       },
 
       // WOFF Font

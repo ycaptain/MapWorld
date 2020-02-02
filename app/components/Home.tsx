@@ -1,8 +1,9 @@
 import React from 'react';
 import path from 'path';
 import { remote } from 'electron';
+import { Button } from 'antd';
 
-let styles = require('./Home.scss');
+let styles = require('./Home.less');
 
 const Home = (): JSX.Element => {
   // test python script
@@ -30,6 +31,7 @@ const Home = (): JSX.Element => {
     <div>
       <div className={styles.container} data-tid="container">
         <h2>Home</h2>
+        <Button type="primary">button</Button>
       </div>
     </div>
   )
