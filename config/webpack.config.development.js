@@ -59,7 +59,7 @@ module.exports = merge(baseConfig, {
 
       // Add SASS support  - compile all .global.scss files and pipe it to style.css
       {
-        test: /\.global\.scss$/,
+        test: /\.global\.less$/,
         use: [
           {
             loader: 'style-loader'
@@ -71,13 +71,13 @@ module.exports = merge(baseConfig, {
             },
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }
         ]
       },
       // Add SASS support  - compile all other .scss files and pipe it to style.css
       {
-        test: /^((?!\.global).)*\.scss$/,
+        test: /^((?!\.global).)*\.less$/,
         use: [
           {
             loader: 'style-loader'
@@ -92,9 +92,38 @@ module.exports = merge(baseConfig, {
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }
-        ]
+        ],
+        exclude: /node_modules\/antd/
+      },
+
+      {
+        test: /^((?!\.global).)*\.less$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[local]',
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                'primary-color': '#1DA57A',
+              },
+              javascriptEnabled: true,
+            }
+          }
+        ],
+        include: /node_modules\/antd/
       },
 
       // WOFF Font
