@@ -40,7 +40,7 @@ WIP
 
 ## Installation
 
-After cloned this project, you need to execute the following command, which would install all the dependencies and be initialized.
+After cloned this project, you need to execute the following command, which would install all the dependencies.
 
 ```bash
 # run at root of this project
