@@ -1,0 +1,3 @@
+[submodule "MapWorld-pred"]
+	path = MapWorld-pred
+	url = https://github.com/YCaptain/MapWorld-pred.git
