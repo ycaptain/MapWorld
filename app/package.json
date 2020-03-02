@@ -3,7 +3,7 @@
   "productName": "map-world",
   "version": "1.0.0",
   "description": "",
-  "main": "./main.js",
+  "main": "./dist/main.js",
   "author": {
     "name": "YCaptain",
     "email": "cz.ycaptain@gmail.com",

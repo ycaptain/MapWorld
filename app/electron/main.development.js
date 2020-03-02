@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Menu, shell } = require('electron');
+const path = require('path');
 
 let menu;
 let template;
@@ -47,7 +48,7 @@ app.on('ready', () =>
     }
   });
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  mainWindow.loadURL(`file://${path.resolve(__dirname, '../public/app.html')}`);
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();

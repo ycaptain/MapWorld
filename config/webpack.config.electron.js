@@ -11,12 +11,12 @@ module.exports = merge(baseConfig, {
 
   devtool: 'source-map',
 
-  entry: ['./app/main.development'],
+  entry: ['./app/electron/main.development'],
 
   // 'main.js' in root
   output: {
     path: __dirname,
-    filename: '../app/main.js'
+    filename: '../app/dist/main.js'
   },
 
   plugins: [
