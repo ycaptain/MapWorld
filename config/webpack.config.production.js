@@ -9,6 +9,10 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
 
+const extractLib = new ExtractTextPlugin('./styles/lib.css');
+const extractUserGlobal = new ExtractTextPlugin('./styles/global.css');
+const extractUser = new ExtractTextPlugin('./styles/style.css');
+
 module.exports = merge(baseConfig, {
   mode: 'production',
 
@@ -25,47 +29,70 @@ module.exports = merge(baseConfig, {
 
   module: {
     rules: [
-      // Extract all .global.css to style.css as is
+
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
+        use: extractLib.extract({
           use: [{
-            loader: 'css-loader',
-            options: {
-              //modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[local]',
+              }
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                modifyVars: {
+                  'primary-color': '#1DA57A',
+                },
+                javascriptEnabled: true,
+              }
             }
-          },
-          {
-            loader: 'less-loader'
-          }]
+          ],
+        }),
+        include: /node_modules\/antd/
+      },
+
+      // Add LESS support  - compile all .global.less files and pipe it to style.css
+      {
+        test: /\.global\.less$/,
+        use: extractUserGlobal.extract({
+          use: [{
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+              }
+            },
+            {
+              loader: 'less-loader',
+            }
+          ],
         }),
         exclude: /node_modules\/antd/
       },
 
+      // Add LESS support  - compile all other .less files and pipe it to style.css
       {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
+        test: /^((?!\.global).)*\.less$/,
+        use: extractUser.extract({
           use: [{
-            loader: 'css-loader',
-            options: {
-              //modules: true,
-              importLoaders: 1,
-              localIdentName: '[local]',
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+              }
+            },
+            {
+              loader: 'less-loader',
             }
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              modifyVars: {
-                'primary-color': '#1DA57A',
-              },
-              javascriptEnabled: true,
-            }
-          }]
+          ],
         }),
-        include: /node_modules\/antd/
+        exclude: /node_modules\/antd/
       },
 
       // WOFF Font
@@ -130,11 +157,13 @@ module.exports = merge(baseConfig, {
     // https://github.com/webpack/webpack/issues/864
     new webpack.optimize.OccurrenceOrderPlugin(),
 
-    new ExtractTextPlugin('style.css'),
+    extractLib,
+    extractUserGlobal,
+    extractUser,
 
     new HtmlWebpackPlugin({
-      filename: '../app.html',
-      template: 'app/app.html',
+      filename: '../public/app.html',
+      template: 'app/public/app.html',
       inject: false
     })
   ],

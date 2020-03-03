@@ -41,23 +41,7 @@ module.exports = merge(baseConfig, {
     // ],
     rules: [
 
-      {
-        test: /\.global\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?sourceMap'
-        ]
-      },
-
-      {
-        test: /^((?!\.global).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-        ]
-      },
-
-      // Add SASS support  - compile all .global.scss files and pipe it to style.css
+      // Add LESS support  - compile all .global.less files and pipe it to style.css
       {
         test: /\.global\.less$/,
         use: [
@@ -75,7 +59,7 @@ module.exports = merge(baseConfig, {
           }
         ]
       },
-      // Add SASS support  - compile all other .scss files and pipe it to style.css
+      // Add LESS support  - compile all other .less files and pipe it to style.css
       {
         test: /^((?!\.global).)*\.less$/,
         use: [
