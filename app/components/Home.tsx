@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
-import Demo from "./Demo3D";
+import Box from "../components/Renderer/Box";
+import Canvas from "../components/Renderer/Canvas";
 let styles = require("./Home.less");
 
 const Home = (): JSX.Element => {
@@ -14,7 +15,10 @@ const Home = (): JSX.Element => {
         </Link>
       </div>
       <div className={styles.container}>
-        <Demo />
+        <Canvas style={{ height: "500px" }}>
+          <Box position={[-2, 0, 0]} />
+          <Box position={[2, 0, 0]} />
+        </Canvas>
       </div>
     </div>
   );

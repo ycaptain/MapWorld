@@ -2,7 +2,14 @@ import React from "react";
 import { Canvas as RTFCanvas } from "react-three-fiber";
 import { CanvasProps } from "react-three-fiber/canvas";
 
-function Canvas({ children, ...rest }: CanvasProps) {
+interface ICanvas extends CanvasProps{
+  style?: React.CSSProperties;
+}
+
+function Canvas({
+  children,
+  ...rest
+}: ICanvas) {
   return (
     <RTFCanvas style={{ height: "700px" }} {...rest}>
       <ambientLight />
