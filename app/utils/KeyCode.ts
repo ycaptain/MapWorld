@@ -1,0 +1,8 @@
+export const KeyCode = {
+
+  A: 0x41,
+  D: 0x44,
+  R: 0x52,
+  S: 0x53,
+  W: 0x57,
+}

@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "react-three-fiber";
-import * as THREE from 'three';
+import { useFrame, useThree } from "react-three-fiber";
+import * as THREE from "three";
 
-
-export function Box(props: any) {
+function Box(props: any) {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
 
@@ -14,7 +13,7 @@ export function Box(props: any) {
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
     if (mesh.current) {
-      mesh.current.rotation.x = mesh.current.rotation.y += 0.01
+      mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
     }
   });
 
@@ -36,16 +35,4 @@ export function Box(props: any) {
   );
 }
 
-function Demo() {
-
-  return (
-    <Canvas style={{height: '500px'}}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-2, 0, 0]} />
-      <Box position={[2, 0, 0]} />
-    </Canvas>
-  );
-}
-
-export default Demo;
+export default Box;
