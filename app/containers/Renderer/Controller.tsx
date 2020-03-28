@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { useThree, useFrame } from "react-three-fiber";
+import { useThree, extend, useFrame } from "react-three-fiber";
 import { KeyCode } from "../../utils/KeyCode";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-
+extend({ OrbitControls });
 const Controller = () => {
   const controls: React.Ref<OrbitControls> = useRef(null);
   const { camera, gl } = useThree();
