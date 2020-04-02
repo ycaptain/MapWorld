@@ -12,8 +12,9 @@ function Canvas({
 }: ICanvas) {
   return (
     <RTFCanvas style={{ height: "700px" }} {...rest}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <color attach="background" args={['lightblue']} />
+      <hemisphereLight intensity={0.35} />
+      <spotLight position={[5, 5, 5]} angle={0.3} penumbra={1} intensity={2} castShadow shadow-mapSize-width={256} shadow-mapSize-height={256} />
       {children}
     </RTFCanvas>
   );

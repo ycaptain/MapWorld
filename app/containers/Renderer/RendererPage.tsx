@@ -8,6 +8,9 @@ import Axes from "../../components/Renderer/Axes";
 import Controller from "./Controller";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { ReactThreeFiber } from "react-three-fiber/three-types";
+import Building from "../../components/Renderer/Building";
+import { Coordicate } from "../../utils/Arith";
+import { Color } from 'three';
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -15,11 +18,23 @@ declare global {
         OrbitControls,
         typeof OrbitControls
       >;
+      color: ReactThreeFiber.Object3DNode<Color, typeof Color>
     }
   }
 }
 
 const RendererPage = (): JSX.Element => {
+  const fakeJSON = {
+    coordinates: [
+      new Coordicate(0, 0, 2),
+      new Coordicate(0, 5, 2),
+      new Coordicate(5, 5, 2),
+      new Coordicate(5, 0, 2)
+    ],
+    properties: {
+      height: 10
+    }
+  };
   return (
     <div>
       <Link
@@ -31,6 +46,7 @@ const RendererPage = (): JSX.Element => {
       <Canvas camera={{ position: [15, 15, 5], up: [0, 0, 1] }}>
         <Box position={[-2, 0, 0]} />
         <Box position={[2, 0, 0]} />
+        <Building position={[0, 0, 2]} item={fakeJSON} />
         <Plane />
         <Axes />
         <Controller />
