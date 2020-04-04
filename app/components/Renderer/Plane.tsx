@@ -1,7 +1,7 @@
 import React from "react";
 import * as THREE from "three";
 
-function Plane(props: any) {
+const Plane: React.FC = (props: any) => {
 
   return (
     <mesh

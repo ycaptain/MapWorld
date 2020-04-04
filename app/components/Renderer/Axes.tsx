@@ -1,6 +1,6 @@
 import React from "react";
 
-function Axes(props: any) {
+const Axes: React.FC = (props) => {
 
   return (
     <mesh

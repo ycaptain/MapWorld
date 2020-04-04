@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "react-three-fiber";
-import {ReactThreeFiber} from "react-three-fiber/three-types";
+import { ReactThreeFiber } from "react-three-fiber/three-types";
 import * as THREE from "three";
 
-function Box(props: ReactThreeFiber.Object3DNode<THREE.Mesh, typeof THREE.Mesh>) {
+const Box: React.FC<ReactThreeFiber.Object3DNode<
+  THREE.Mesh,
+  typeof THREE.Mesh
+>> = props => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
 
@@ -34,6 +37,6 @@ function Box(props: ReactThreeFiber.Object3DNode<THREE.Mesh, typeof THREE.Mesh>)
       />
     </mesh>
   );
-}
+};
 
 export default Box;

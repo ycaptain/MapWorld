@@ -3,7 +3,8 @@ import { useThree, extend, useFrame } from "react-three-fiber";
 import { KeyCode } from "../../utils/KeyCode";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 extend({ OrbitControls });
-const Controller = () => {
+
+const Controller: React.FC = () => {
   const controls: React.Ref<OrbitControls> = useRef(null);
   const { camera, gl } = useThree();
 
@@ -48,7 +49,12 @@ const Controller = () => {
     };
   }, []);
 
-  return <orbitControls ref={controls} args={[camera, gl.domElement]} />;
+  return (
+    <>
+      <orbitControls ref={controls} args={[camera, gl.domElement]} />
+      {/* <cameraHelper attach="camera" /> */}
+    </>
+  );
 };
 
 export default Controller;

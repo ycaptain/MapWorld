@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "moduleResolution": "node",
-    "module": "esnext",
-    "jsx": "react",
     "lib": [
       "dom",
       "es6",
       "dom.iterable",
-      "scripthost"
     ],
     "types": [],
     "typeRoots": [
       "../node_modules/@types"
     ],
+    "target": "es5",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "jsx": "react",
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -23,8 +22,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
+    "esModuleInterop": true,
     "outDir": "dist",
-    "esModuleInterop": true
   },
   "files": [
     "app/index.tsx"
