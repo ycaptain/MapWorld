@@ -26,18 +26,14 @@ before_install:
   - mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.2.0/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.2.0.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1 && /tmp/git-lfs/git-lfs pull
   - rm .npmrc
   - rm .yarnrc
+  - rm yarn.lock
+
+install:
+  - yarn install
 
 script:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-      yarn install;
-      yarn build;
-      yarn package;
-    else
-      npm install;
-      npm run build;
-      npm run package-win;
-    fi
+  - yarn build
+  - yarn package
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
