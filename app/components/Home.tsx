@@ -1,40 +1,27 @@
-import React from 'react';
-import path from 'path';
-import { remote } from 'electron';
-import { Button } from 'antd';
-
-let styles = require('./Home.less');
+import React from "react";
+import { Button } from "antd";
+import { Link } from "react-router-dom";
+import Box from "./renderer/Box";
+import Canvas from "./renderer/Canvas";
+let styles = require("./Home.less");
 
 const Home = (): JSX.Element => {
-  // test python script
-  let pyProc = null;
-  const createPyProc = () => {
-    console.warn(remote.app.getAppPath());
-    let script = path.join(remote.app.getAppPath(), '..', 'py', 'test.py');
-    console.log(script);
-    let ch = require('child_process');
-    pyProc = ch.spawn('python', [script])
-    if (pyProc != null) {
-      console.log('child process success')
-      pyProc.stdout.on('data', (data: any) => {
-        console.log(`stdout: ${data}`);
-        new Notification('python', {
-          body: `stdout: ${data}`
-        })
-      });
-    } else {
-      console.log('hello failed');
-    }
-  }
-  createPyProc();
   return (
     <div>
-      <div className={styles.container} data-tid="container">
-        <h2>Home</h2>
-        <Button type="primary">button</Button>
+      <div className={styles.container}>
+        <h2 style={{ userSelect: "none" }}>Home</h2>
+        <Link to="/renderer">
+          <Button type="primary">Renderer</Button>
+        </Link>
+      </div>
+      <div className={styles.container}>
+        <Canvas style={{ height: "500px" }} bgColor={0xffffff}>
+          <Box position={[-2, 0, 0]} />
+          <Box position={[2, 0, 0]} />
+        </Canvas>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

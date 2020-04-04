@@ -2,7 +2,7 @@ import React from 'react';
 import Home from '../components/Home';
 
 
-const HomePage = (): JSX.Element => {
+const HomePage: React.FC = () => {
   return (
     <Home />
   );
