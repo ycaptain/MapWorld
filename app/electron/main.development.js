@@ -41,8 +41,10 @@ app.on('ready', () =>
   .then(() => {
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    width: 1290,
+    height: 800,
+    minWidth: 1020,
+    minHeight: 620,
     webPreferences: {
       nodeIntegration: true
     }

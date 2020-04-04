@@ -1,7 +1,6 @@
 import React from "react";
 import { Canvas as RTFCanvas } from "react-three-fiber";
 import { CanvasProps } from "react-three-fiber/canvas";
-import { Color } from "three";
 
 interface ICanvas extends CanvasProps {
   style?: React.CSSProperties;

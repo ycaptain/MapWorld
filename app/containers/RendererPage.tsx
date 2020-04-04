@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
-import Box from "../../components/renderer/Box";
-import Canvas from "../../components/renderer/Canvas";
-import Plane from "../../components/renderer/Plane";
-import Axes from "../../components/renderer/Axes";
-import Controller from "./Controller";
-import Building from "../../components/renderer/Building";
-import { Coordicate } from "../../utils/Arith";
+import Box from "../components/renderer/Box";
+import Canvas from "../components/renderer/Canvas";
+import Plane from "../components/renderer/Plane";
+import Axes from "../components/renderer/Axes";
+import Controller from "../components/renderer/Controller";
+import Building from "../components/renderer/Building";
+import { Coordicate } from "../utils/Arith";
 
 
 const RendererPage: React.FC = () => {
@@ -37,7 +37,6 @@ const RendererPage: React.FC = () => {
         <Building position={[6, 0, 0]} item={fakeJSON} />
         <Plane />
         <Axes />
-        {/* <Light /> */}
         <Controller />
       </Canvas>
     </div>
