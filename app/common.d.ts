@@ -10,7 +10,6 @@ declare global {
         typeof OrbitControls
       >;
       color: ReactThreeFiber.Object3DNode<Color, typeof Color>;
-      content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
     }
   }
 }
