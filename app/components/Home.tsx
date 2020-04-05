@@ -1,21 +1,45 @@
 import React from "react";
-import { Button } from "antd";
 import { Link } from "react-router-dom";
 import Box from "./renderer/Box";
 import Canvas from "./renderer/Canvas";
-let styles = require("./Home.less");
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 const Home = (): JSX.Element => {
   return (
     <div>
-      <div className={styles.container}>
-        <h2 style={{ userSelect: "none" }}>Home</h2>
-        <Link to="/renderer">
-          <Button type="primary">Renderer</Button>
-        </Link>
+      <div
+        className={
+          "absolute z-10 max-w-sm h-40 flex p-6 bg-white rounded-lg shadow-xl m-auto inset-0 justify-center items-center"
+        }
+      >
+        <FontAwesomeIcon
+          className={"self-center"}
+          icon={faCoffee}
+          color={"orange"}
+          size={"5x"}
+        />
+        <div className={"ml-6 pt-1"}>
+          <h2 className={"text-4xl text-gray-900 text-center leading-tight"}>
+            Map World
+          </h2>
+          <Link to="/renderer">
+            <div className="mt-4">
+              <button
+                type={"button"}
+                className={
+                  "text-purple-500 hover:text-white focus:outline-none hover:bg-purple-500 border border-purple-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
+                }
+              >
+                Meet better life!
+              </button>
+            </div>
+          </Link>
+        </div>
       </div>
-      <div className={styles.container}>
-        <Canvas style={{ height: "500px" }} bgColor={0xffffff}>
+      <div className={"h-screen"}>
+        <Canvas style={{ height: "100%" }}>
           <Box position={[-2, 0, 0]} />
           <Box position={[2, 0, 0]} />
         </Canvas>

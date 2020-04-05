@@ -13,7 +13,7 @@ const Canvas: React.FC<ICanvas> = ({
   ...rest
 }) => {
   return (
-    <RTFCanvas shadowMap style={{ height: "700px" }} {...rest}>
+    <RTFCanvas shadowMap {...rest}>
       <color attach={"background"} args={[bgColor]} />
       <hemisphereLight intensity={0.35} />
       <spotLight position={[50, 50, 100]} angle={0.3} penumbra={1} intensity={1.5} shadow-mapSize-width={256} shadow-mapSize-height={256} />

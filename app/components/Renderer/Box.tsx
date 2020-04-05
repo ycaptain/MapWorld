@@ -7,14 +7,11 @@ const Box: React.FC<ReactThreeFiber.Object3DNode<
   THREE.Mesh,
   typeof THREE.Mesh
 >> = props => {
-  // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
 
-  // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
 
-  // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.x = mesh.current.rotation.y += 0.01;

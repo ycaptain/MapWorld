@@ -9,7 +9,8 @@ declare global {
         OrbitControls,
         typeof OrbitControls
       >;
-      color: ReactThreeFiber.Object3DNode<Color, typeof Color>
+      color: ReactThreeFiber.Object3DNode<Color, typeof Color>;
+      content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
     }
   }
 }

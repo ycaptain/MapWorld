@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
-import { ReactThreeFiber } from "react-three-fiber/three-types";
+import React, { useRef, useState, useEffect } from 'react';
+import { ReactThreeFiber } from 'react-three-fiber/three-types';
 
-import * as THREE from "three";
-import { Coordicate, minus, cross } from "../../utils/Arith";
+import * as THREE from 'three';
+import { Coordicate, minus, cross } from '../../utils/Arith';
 
 const Building: React.FC<IBuilding> = (props) => {
   const { item, ...rest } = props;
@@ -34,12 +34,9 @@ const Building: React.FC<IBuilding> = (props) => {
       onPointerOut={(e) => setHover(false)}
       {...rest}
     >
-      <bufferGeometry
-        ref={geo}
-        attach="geometry"
-      >
+      <bufferGeometry ref={geo} attach="geometry">
         <bufferAttribute
-          attachObject={["attributes", "position"]}
+          attachObject={['attributes', 'position']}
           normalized
           itemSize={3}
           array={verticesBuffer}
@@ -50,7 +47,7 @@ const Building: React.FC<IBuilding> = (props) => {
         attach="material"
         transparent
         opacity={0.6}
-        color={hovered ? "hotpink" : "orange"}
+        color={hovered ? 'hotpink' : 'orange'}
       />
     </mesh>
   );
@@ -86,7 +83,7 @@ function getVertices(coors: Coordicate[], height: number) {
       height,
       ...last.slice(0, 2),
       height,
-    ]
+    ],
   );
 
   let n = 2;
@@ -107,7 +104,7 @@ function getVertices(coors: Coordicate[], height: number) {
         height,
         ...sec.slice(0, 2),
         height,
-      ]
+      ],
     );
 
     // top
@@ -119,7 +116,7 @@ function getVertices(coors: Coordicate[], height: number) {
         height,
         ...thi.slice(0, 2),
         height,
-      ]
+      ],
     );
 
     // bottom
