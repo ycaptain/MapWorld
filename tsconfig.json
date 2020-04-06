@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "es6",
-      "dom.iterable",
-    ],
+    "baseUrl": ".",
+    "paths": {
+      "@test": ["app/components/*"]
+    },
+    "lib": ["dom", "es6", "dom.iterable"],
     "types": [],
-    "typeRoots": [
-      "../node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "target": "es5",
     "moduleResolution": "node",
     "module": "esnext",
@@ -23,19 +21,15 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "outDir": "dist",
+    "outDir": "dist"
   },
-  "files": [
-    "app/index.tsx"
-  ],
   "include": [
     "app/**/*.ts",
     "app/**/*.tsx",
+    "app/**/*.less",
     "test/**/*.ts",
     "test/**/*.tsx",
     "node_modules/@types/**/*.d.ts"
   ],
-  "exclude": [
-    "dist"
-  ]
+  "exclude": ["dist"]
 }

@@ -28,10 +28,7 @@
     "**/bower_components": true
   },
   //
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -52,7 +49,7 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "vue",
+    "vue"
   ],
   "javascript.validate.enable": false,
   "typescript.validate.enable": true,
@@ -67,14 +64,14 @@
   //
   "prettier.disableLanguages": [
     // "javascript",
-    "javascriptreact",
-    "typescript",
+    // "javascriptreact"
+    // "typescript"
     // "typescriptreact",
     // "css",
     // "less",
     // "scss",
-    "jsonc",
-    "json"
+    // "jsonc",
+    // "json"
   ],
   "prettier.trailingComma": "all",
   "prettier.printWidth": 80,
@@ -82,11 +79,17 @@
   "prettier.arrowParens": "avoid",
   "prettier.bracketSpacing": true,
   "prettier.jsxBracketSameLine": true,
-  //
+  "prettier.endOfLine": "auto",
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "[typescriptreact, typescript, javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.codeActionsOnSaveTimeout": 5000,
+  "editor.codeActionsOnSaveTimeout": 3000,
   "javascript.format.enable": false,
   "typescript.format.enable": false,
   "json.format.enable": true,
@@ -103,11 +106,5 @@
     "editor.formatOnSave": true
   },
   "emmet.triggerExpansionOnTab": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "[typescriptreact, javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
-  }
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

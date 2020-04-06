@@ -14,7 +14,7 @@ const Building: React.FC<IBuilding> = (props) => {
   const [active, setActive] = useState(false);
 
   const coors = anticlockwise(item.coordinates);
-  const vertices = getVertices(coors, item.properties.height);
+  const {vertices, averX, averY} = getVertices(coors, item.properties.height);
   const verticesBuffer = new Float32Array(vertices);
 
   useEffect(() => {
@@ -32,12 +32,10 @@ const Building: React.FC<IBuilding> = (props) => {
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}
+      position={[averX, averY, 0]}
       {...rest}
     >
-      <bufferGeometry
-        ref={geo}
-        attach="geometry"
-      >
+      <bufferGeometry ref={geo} attach="geometry">
         <bufferAttribute
           attachObject={["attributes", "position"]}
           normalized
@@ -59,19 +57,25 @@ const Building: React.FC<IBuilding> = (props) => {
 function getVertices(coors: Coordicate[], height: number) {
   const vertices = [];
 
-  const fir = coors[0].toArray();
-  const last = coors[coors.length - 1].toArray();
+  const { x: averX, y: averY } = coors.reduce((prev, curr) => ({
+    x: prev.x + curr.x,
+    y: prev.y + curr.y,
+    z: 0,
+  }));
+
+  const fir = Object.values(coors[0]);
+  const last = Object.values(coors[coors.length - 1]);
 
   // sides out
   vertices.push(
     ...[
       ...fir,
-      ...coors[1].toArray(),
-      ...coors[1].toArray().slice(0, 2),
+      ...Object.values(coors[1]),
+      ...Object.values(coors[1]).slice(0, 2),
       height,
 
       ...fir,
-      ...coors[1].toArray().slice(0, 2),
+      ...Object.values(coors[1]).slice(0, 2),
       height,
       ...fir.slice(0, 2),
       height,
@@ -91,8 +95,8 @@ function getVertices(coors: Coordicate[], height: number) {
 
   let n = 2;
   while (n <= coors.length - 1) {
-    const sec = coors[n - 1].toArray();
-    const thi = coors[n].toArray();
+    const sec = Object.values(coors[n - 1]);
+    const thi = Object.values(coors[n]);
 
     // sides
     vertices.push(
@@ -128,7 +132,11 @@ function getVertices(coors: Coordicate[], height: number) {
     n += 1;
   }
 
-  return vertices;
+  return {
+    vertices,
+    averX,
+    averY,
+  };
 }
 
 function anticlockwise(coors: Coordicate[]) {
