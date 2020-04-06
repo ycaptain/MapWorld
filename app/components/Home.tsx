@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Box from "./renderer/Box";
 import Canvas from "./renderer/Canvas";
+import { Button } from "antd";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +12,7 @@ const Home = (): JSX.Element => {
     <div>
       <div
         className={
-          "absolute z-10 max-w-sm h-40 flex p-6 bg-white rounded-lg shadow-xl m-auto inset-0 justify-center items-center"
+          "absolute z-10 max-w-sm h-40 flex p-6 bg-white rounded-lg shadow-xl m-auto inset-0 justify-center items-center text-center"
         }
       >
         <FontAwesomeIcon
@@ -26,14 +27,14 @@ const Home = (): JSX.Element => {
           </h2>
           <Link to="/renderer">
             <div className="mt-4">
-              <button
-                type={"button"}
+              <Button
+                type={"primary"}
                 className={
-                  "text-purple-500 hover:text-white focus:outline-none hover:bg-purple-500 border border-purple-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
+                  "hover:text-white focus:outline-none hover:bg-teal-500 bg-teal-700 border border-teal-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
                 }
               >
                 Meet better life!
-              </button>
+              </Button>
             </div>
           </Link>
         </div>

@@ -46,7 +46,8 @@ app.on('ready', () =>
     minWidth: 1020,
     minHeight: 620,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      preload: path.resolve(__dirname, 'preload.js'),
     }
   });
 

@@ -17,7 +17,8 @@
     "package-linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
     "package-all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
     "gen:thrift": "rm -rf app/api/gen-thrift && mkdir app/api/gen-thrift && thrift -r -out app/api/gen-thrift -gen js:node ids/predict.thrift",
-    "reset": "rm -rf node_modules"
+    "reset": "rm -rf node_modules",
+    "mock": "node scripts/generate.js"
   },
   "build": {
     "productName": "MapWorld",

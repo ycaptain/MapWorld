@@ -1,5 +1,4 @@
 export const KeyCode = {
-
   A: 0x41,
   D: 0x44,
   R: 0x52,

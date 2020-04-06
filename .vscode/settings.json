@@ -64,8 +64,8 @@
   //
   "prettier.disableLanguages": [
     // "javascript",
-    "javascriptreact",
-    "typescript"
+    // "javascriptreact"
+    // "typescript"
     // "typescriptreact",
     // "css",
     // "less",
