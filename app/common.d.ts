@@ -1,5 +1,6 @@
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { ReactThreeFiber } from "react-three-fiber/three-types";
+import { Item } from "./components/renderer/Building";
 import { Color } from "three";
 import path from "path";
 import electron from 'electron';
@@ -18,7 +19,7 @@ declare global {
   interface Window {
     path: typeof path;
     electron: typeof electron;
-    readCoors: (filePath: string) => Promise<void>;
+    readCoors: (filePath: string) => Promise<Item[]>;
   }
 }
 
