@@ -1234,6 +1234,13 @@
   resolved "https://registry.npm.taobao.org/@types/jest/download/@types/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
   integrity sha1-AVfAMW3DcixDp7cd4/3zrLzO8Q0=
 
+"@types/node-int64@*":
+  version "0.4.29"
+  resolved "https://registry.npm.taobao.org/@types/node-int64/download/@types/node-int64-0.4.29.tgz#8c7c16a7c1195ae4f8beaa903b0018ac66291d16"
+  integrity sha1-jHwWp8EZWuT4vqqQOwAYrGYpHRY=
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   version "13.5.0"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.5.0.tgz#4e498dbf355795a611a87ae5ef811a8660d42662"
@@ -1254,7 +1261,7 @@
   resolved "https://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.7.3.tgz?cache=0&sync_timestamp=1572483277444&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fprop-types%2Fdownload%2F%40types%2Fprop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
 
-"@types/q@^1.5.1":
+"@types/q@*", "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.2.tgz?cache=0&sync_timestamp=1580864636491&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fq%2Fdownload%2F%40types%2Fq-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha1-aQoUdbhPKohP0HzXl8APXzE1bqg=
@@ -1353,6 +1360,15 @@
   version "0.0.30"
   resolved "https://registry.npm.taobao.org/@types/strip-json-comments/download/@types/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha1-mqMMBNshKpoGSdaub9UKzMQHSKE=
+
+"@types/thrift@^0.10.9":
+  version "0.10.9"
+  resolved "https://registry.npm.taobao.org/@types/thrift/download/@types/thrift-0.10.9.tgz#cdc1bb5fe8f55cc21175719781ae89db6bd2e7e5"
+  integrity sha1-zcG7X+j1XMIRdXGXga6J22vS5+U=
+  dependencies:
+    "@types/node" "*"
+    "@types/node-int64" "*"
+    "@types/q" "*"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"

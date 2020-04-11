@@ -41,3 +41,6 @@ app/style.css.map
 dist
 main.js
 main.js.map
+
+# Generated Thrift API
+app/api/gen-thrift
