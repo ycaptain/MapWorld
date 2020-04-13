@@ -1,22 +1,30 @@
-import React, {useState} from "react";
-import {Button, Input} from "antd";
+import React, { useState, useEffect } from "react";
+import { Button, Input } from "antd";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import {Item} from "../renderer/Building";
-
-import * as thrift from 'thrift';
+import { ipcRenderer } from "electron";
 
 const Panel: React.FC<Panel> = (props) => {
   const { loadMap } = props;
 
-  const [cfg_path, setCfg_path] = useState<string>("");
-  const [model_path, setModel_path] = useState<string>("");
+  const [configPath, setConfigPath] = useState<string>("");
+  const [modelPath, setModelPath] = useState<string>("");
 
-  const initPred = async () => {
-    // var transport = new thrift.TBufferedTransport("/thrift/service/tutorial/");
-    // var protocol  = new thrift.Protocol(transport);
-  };
+  useEffect(() => {
+    ipcRenderer.on("predict-r", (_, resp) => {
+      console.info(resp);
+    });
+  }, []);
+
+  function initPred({
+    configPath,
+    modelPath,
+    frAddr,
+    frPort,
+  }: InitRequest): void {
+    ipcRenderer.send("predict", { configPath, modelPath, frAddr, frPort });
+  }
 
   return (
     <div className={"flex h-full"}>
@@ -35,9 +43,21 @@ const Panel: React.FC<Panel> = (props) => {
       <div>
         <Button onClick={() => loadMap()}>Load</Button>
         <div>
-          <Input value={cfg_path} onChange={e => setCfg_path(e.target.value)}/>
-          <Input value={model_path} onChange={e => setModel_path(e.target.value)}/>
-          <Button onClick={() => initPred()}>Init</Button>
+          <Input
+            value={configPath}
+            onChange={(e) => setConfigPath(e.target.value)}
+          />
+          <Input
+            value={modelPath}
+            onChange={(e) => setModelPath(e.target.value)}
+          />
+          <Button
+            onClick={() =>
+              initPred({ configPath, modelPath, frAddr: "", frPort: "" })
+            }
+          >
+            Init
+          </Button>
         </div>
       </div>
     </div>
@@ -46,6 +66,13 @@ const Panel: React.FC<Panel> = (props) => {
 
 type Panel = {
   loadMap: Function;
+};
+
+type InitRequest = {
+  configPath: string;
+  modelPath: string;
+  frAddr: string;
+  frPort: string;
 };
 
 export default Panel;

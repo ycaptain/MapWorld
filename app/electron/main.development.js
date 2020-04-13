@@ -51,6 +51,8 @@ app.on('ready', () =>
     }
   });
 
+  require('./ipc');
+
   mainWindow.loadURL(`file://${path.resolve(__dirname, '../public/app.html')}`);
 
   mainWindow.webContents.on('did-finish-load', () => {
