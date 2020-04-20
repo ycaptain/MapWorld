@@ -6,9 +6,6 @@ package-lock.json
 .yarn-integrity
 .npm
 .eslintcache
-.vscode/**/*
-!.vscode/settings.json
-!.vscode/extensions.json
 .repo_version
 build/
 dist/
