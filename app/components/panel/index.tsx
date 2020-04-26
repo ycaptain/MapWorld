@@ -18,11 +18,11 @@ const Panel: React.FC<Panel> = (props) => {
   }, []);
 
   function initPred({
-                      configPath,
-                      modelPath,
-                      frAddr,
-                      frPort,
-                    }: InitRequest): void {
+    configPath,
+    modelPath,
+    frAddr,
+    frPort,
+  }: InitRequest): void {
     ipcRenderer.send("predict", { configPath, modelPath, frAddr, frPort });
   }
 

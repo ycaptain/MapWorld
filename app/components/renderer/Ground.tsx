@@ -1,39 +1,26 @@
-import React from "react";
-import * as THREE from "three";
-import {ReactThreeFiber} from "react-three-fiber/three-types";
-// import TestTextureURL from '../../../resources/textures/tuanjiehu.png';
+import React, { useEffect, useState } from "react";
+import { TextureLoader, Texture, Mesh } from "three";
+import { ReactThreeFiber } from "react-three-fiber/three-types";
+import textureUrl from "../../../resources/textures/tuanjiehu.png";
 
-import {useLoader} from "react-three-fiber";
-
-interface IGround
-  extends ReactThreeFiber.Object3DNode<THREE.Mesh, typeof THREE.Mesh> {
-  texture: THREE.Texture
+interface IGround extends ReactThreeFiber.Object3DNode<Mesh, typeof Mesh> {
+  texture?: Texture;
 }
 
 const Ground: React.FC<IGround> = (props) => {
+  const [texture, setTexture] = useState<any>(null);
 
-  window.path = require("path");
-
-  const TestTexture = useLoader(THREE.TextureLoader, '../../../resources/textures/tuanjiehu.png');
-
-  if (TestTexture) {
-    TestTexture.wrapS = TestTexture.wrapT = THREE.RepeatWrapping;
-    TestTexture.repeat.set(1500, 1500);
-    TestTexture.anisotropy = 16;
-  }
+  useEffect(() => {
+    console.log(textureUrl);
+    setTexture(new TextureLoader().load(textureUrl));
+  }, [textureUrl]);
 
   return (
-    <mesh
-    {...props}
-    >
-      <planeBufferGeometry attach="geometry" args={[100, 100]}  />
-      {/*<meshBasicMaterial attach="material" color={0xD9B420} side={THREE.DoubleSide} />*/}
-      {TestTexture &&
-        <meshPhongMaterial attach="material" map={TestTexture} />
-      }
+    <mesh {...props}>
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+      <meshPhongMaterial attach="material" map={texture} />
     </mesh>
-  )
-
-}
+  );
+};
 
 export default Ground;

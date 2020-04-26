@@ -123,6 +123,7 @@
     "boiler-room-custodian": "^0.6.2",
     "commitizen": "^4.0.3",
     "concurrently": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "css-modules-require-hook": "^4.0.6",
