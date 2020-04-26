@@ -6,6 +6,7 @@ import Controller from "../components/renderer/Controller";
 import Building, { Item } from "../components/renderer/Building";
 import Panel from "../components/panel";
 import { ArrowsAltOutlined, ShrinkOutlined } from "@ant-design/icons";
+import Ground from "../components/renderer/Ground";
 
 const RendererPage: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
@@ -29,7 +30,8 @@ const RendererPage: React.FC = () => {
 
   const renderCanvas = () => (
     <Canvas camera={{ position: [15, 15, 5], up: [0, 0, 1] }}>
-      <Plane />
+      {/*<Plane />*/}
+      <Ground />
       <Axes />
       <Controller />
       {items && items.map((item, idx) => <Building key={idx} item={item} />)}

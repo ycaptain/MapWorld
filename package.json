@@ -16,7 +16,7 @@
     "package-win": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --x64",
     "package-linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
     "package-all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
-    "gen:thrift": "rm -rf app/api/gen-thrift && mkdir app/api/gen-thrift && thrift -r -out app/api/gen-thrift -gen js:node ids/predict.thrift",
+    "gen:thrift": "rm -rf app/electron/gen-thrift && mkdir app/electron/gen-thrift && thrift -r -out app/electron/gen-thrift -gen js:node MapWorld-pred/src/predict.thrift && thrift -r -out app/electron/gen-thrift -gen js:node app/main.thrift",
     "reset": "rm -rf node_modules",
     "mock": "node scripts/generate.js"
   },

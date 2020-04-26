@@ -10,7 +10,7 @@ const Building: React.FC<IBuilding> = (props) => {
   const mesh = useRef<THREE.Mesh>(null);
   const geo = useRef<THREE.BufferGeometry>(null);
 
-  const [hovered, setHover] = useState(false);
+  // const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
 
   const coors = anticlockwise(item.coordinates);
@@ -28,11 +28,11 @@ const Building: React.FC<IBuilding> = (props) => {
       receiveShadow
       castShadow
       ref={mesh}
-      scale={active ? [1.1, 1.1, 1.1] : [1, 1, 1]}
+      // scale={active ? [1.1, 1.1, 1.1] : [1, 1, 1]}
       onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
-      position={[averX, averY, 0]}
+      // onPointerOver={(e) => setHover(true)}
+      // onPointerOut={(e) => setHover(false)}
+      position={[0, 0, 0]}
       {...rest}
     >
       <bufferGeometry ref={geo} attach="geometry">
@@ -48,7 +48,7 @@ const Building: React.FC<IBuilding> = (props) => {
         attach="material"
         transparent
         opacity={0.6}
-        color={hovered ? "hotpink" : "orange"}
+        color={active ? "hotpink" : "orange"}
       />
     </mesh>
   );
