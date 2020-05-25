@@ -16,7 +16,7 @@
     "package-win": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --x64",
     "package-linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
     "package-all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
-    "gen:thrift": "rm -rf app/electron/gen-thrift && mkdir app/electron/gen-thrift && thrift -r -out app/electron/gen-thrift -gen js:node MapWorld-pred/src/predict.thrift && thrift -r -out app/electron/gen-thrift -gen js:node app/main.thrift",
+    "gen:thrift": "rm -rf app/electron/rpc/service && mkdir app/electron/rpc/service && thrift -r -out app/electron/rpc/service -gen js:node MapWorld-pred/src/predict.thrift",
     "reset": "rm -rf node_modules",
     "mock": "node scripts/generate.js"
   },
@@ -182,7 +182,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-three-fiber": "^4.0.19",
-    "redux": "^3.6.0",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.1.0",
     "source-map-support": "^0.5.0",
     "svg-react-loader": "^0.4.6",

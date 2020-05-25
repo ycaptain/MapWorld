@@ -56,7 +56,6 @@ const Building: React.FC<IBuilding> = (props) => {
 
 function getVertices(coors: Coordicate[], height: number) {
   const vertices = [];
-
   const { x: averX, y: averY } = coors.reduce((prev, curr) => ({
     x: prev.x + curr.x,
     y: prev.y + curr.y,

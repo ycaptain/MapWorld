@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Canvas from "../components/renderer/Canvas";
-import Plane from "../components/renderer/Plane";
+// import Plane from "../components/renderer/Plane";
 import Axes from "../components/renderer/Axes";
 import Controller from "../components/renderer/Controller";
 import Building, { Item } from "../components/renderer/Building";
 import Panel from "../components/panel";
 import { ArrowsAltOutlined, ShrinkOutlined } from "@ant-design/icons";
 import Ground from "../components/renderer/Ground";
+import {Button} from 'antd';
 
 const RendererPage: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
@@ -41,18 +42,18 @@ const RendererPage: React.FC = () => {
   // FIXME: resize canvas after zooming
   return (
     <div className={"w-screen h-screen flex justify-between"}>
-      {!isFull && (
-        <div className={"max-w-xs w-full bg-teal-500"}>
-          <Panel loadMap={loadMap} />
-        </div>
-      )}
+      <div className={"absolute z-10 h-full max-w-xs w-full bg-teal-500"}>
+        <Panel loadMap={loadMap} />
+      </div>
       <div className={"w-full h-full"}>
         {renderCanvas()}
         <div className={"absolute right-0 bottom-0 mr-6 mb-6 z-10"}>
-          <button
+          <Button
             className={
               "bg-transparent p-0 w-8 h-8 border border-solid border-black"
             }
+            size="middle"
+            type="primary"
           >
             {isFull ? (
               <ShrinkOutlined
@@ -65,7 +66,7 @@ const RendererPage: React.FC = () => {
                 onClick={() => setFull(true)}
               />
             )}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

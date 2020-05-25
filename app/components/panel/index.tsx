@@ -28,12 +28,13 @@ const Panel: React.FC<Panel> = (props) => {
 
   return (
     <div className={"flex h-full"}>
-      <div className={"flex w-12 bg-teal-400 h-full"}>
-        <Link to="/" className={"relative bottom-0 mx-auto my-2"}>
+      <div className={"flex w-14 bg-teal-400 h-full"}>
+        <Link to="/" className={"relative"}>
           <Button
             className={
-              "hover:text-white hover:outline-none focus:outline-none hover:bg-teal-400 border-none bg-teal-500 text-xs font-semibold rounded-full leading-normal"
+              "hover:text-white hover:outline-none focus:outline-none hover:bg-teal-500 bg-teal-400 rounded border-none text-xs font-semibold leading-normal"
             }
+            size="middle"
             type="primary"
           >
             <FontAwesomeIcon icon={faChevronLeft} />
