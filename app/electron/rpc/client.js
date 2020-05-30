@@ -13,7 +13,7 @@ class RpcClient {
   }
 
   connect(host, port) {
-    this.conn = thrift.createConnection(host || "localhost", port || 8888, {
+    this.conn = thrift.createConnection(host || "localhost", port || 12345, {
       transport,
       protocol,
     });

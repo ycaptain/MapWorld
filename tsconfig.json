@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "app",
     "paths": {
-      "@test": ["app/components/*"]
+      "@*": ["./*"]
     },
     "lib": ["dom", "es6", "dom.iterable"],
     "types": [],

@@ -6,7 +6,7 @@ import path from "path";
 import electron from 'electron';
 
 declare global {
-  namespace JSX {
+  module JSX {
     interface IntrinsicElements {
       orbitControls: ReactThreeFiber.Object3DNode<
         OrbitControls,

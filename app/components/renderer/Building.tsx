@@ -4,6 +4,8 @@ import { ReactThreeFiber } from "react-three-fiber/three-types";
 import * as THREE from "three";
 import { Coordicate, minus, cross } from "../../utils/Arith";
 
+import { AppState } from '@/reducers';
+
 const Building: React.FC<IBuilding> = (props) => {
   const { item, ...rest } = props;
 

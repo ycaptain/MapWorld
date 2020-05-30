@@ -25,15 +25,15 @@ app.on("window-all-closed", () => {
 
 const installExtensions = () => {
   if (process.env.NODE_ENV === "development") {
+    const installer = require("electron-devtools-installer");
     const extensions = [
-      // TODO Error: React DevTools can only be installed from an renderer process.
-      // 'electron-react-devtools',
-      // 'electron-redux-devtools'
+      "REACT_DEVELOPER_TOOLS",
+      "REDUX_DEVTOOLS",
     ];
 
-    return Promise.all(extensions.map((name) => require(name).install())).catch(
-      console.log
-    );
+    return Promise.all(
+      extensions.map((name) => installer.default(installer[name]))
+    ).catch(console.log);
   }
 
   return Promise.resolve([]);
@@ -41,20 +41,23 @@ const installExtensions = () => {
 
 app.on("ready", () =>
   installExtensions().then(() => {
-    rpcClient = new RpcClient();
-    rpcClient.connect();
-    (async() => {
-      let res = await rpcClient.initialize({config_path: "/Users/ycaptain/workspace/2020/learning/electron/MapWorld/MapWorld-pred/test/testpack/PackedModels.json"});
-      res = await rpcClient.doPred({
-        imgs_path: [path.join(__dirname, '../../resources/test.png')],
-        imgs_meta: [{origin: {x: 0, y: 0}, pixel_size: {x: 748, y: 932}}],
-        // model_name: 'Road-Deeplab',
-        model_name: 'Building-Deeplab',
-        n_gpu_use: 0,
-      })
-      rpcClient.disconnect();
-      console.info(res);
-    })();
+    // rpcClient = new RpcClient();
+    // rpcClient.connect();
+    // (async() => {
+    //   let res = await rpcClient.initialize({config_path: "/Users/ycaptain/workspace/2020/learning/electron/MapWorld/MapWorld-pred/test/testpack/PackedModels.json"});
+    //   res = await rpcClient.doPred({
+    //     imgs_path: [path.join(__dirname, '../../resources/test.png')],
+    //     imgs_meta: [{origin: {x: 0, y: 0}, pixel_size: {x: 748, y: 932}}],
+    //     // model_name: 'Road-Deeplab',
+    //     model_name: 'Building-Deeplab',
+    //     n_gpu_use: 0,
+    //   })
+    //   res = await rpcClient.getTask();
+    //   res = await rpcClient.getTask();
+    //   res = await rpcClient.getTask();
+    //   rpcClient.disconnect();
+    //   console.info(res);
+    // })();
 
     mainWindow = new BrowserWindow({
       show: false,
@@ -72,9 +75,10 @@ app.on("ready", () =>
       `file://${path.resolve(__dirname, "../public/app.html")}`
     );
 
-    mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.webContents.on("did-finish-load", async () => {
       mainWindow.show();
       mainWindow.focus();
+      await installExtensions();
     });
 
     mainWindow.on("closed", () => {

@@ -1,11 +1,7 @@
 import React from 'react';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    )
-  }
+const App: React.FC = ({children}) => {
+  return <>{children}</>
 }
+
+export default App;
