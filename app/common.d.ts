@@ -1,8 +1,9 @@
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { ReactThreeFiber } from "react-three-fiber/three-types";
-import { Item } from "./components/renderer/Building";
-import { Color } from "three";
-import path from "path";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { ReactThreeFiber } from 'react-three-fiber/three-types';
+import { Item } from './components/renderer/Building';
+import { Color } from 'three';
+import path from 'path';
+import fs from 'fs';
 import electron from 'electron';
 
 declare global {
@@ -18,8 +19,8 @@ declare global {
 
   interface Window {
     path: typeof path;
+    fs: typeof fs;
     electron: typeof electron;
     readCoors: (filePath: string) => Promise<Item[]>;
   }
 }
-

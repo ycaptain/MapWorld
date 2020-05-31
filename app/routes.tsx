@@ -8,7 +8,7 @@ export default () => {
   return (
     <App>
       <Switch>
-        <Route path="/renderer" component={RendererPage} />
+        <Route path="/renderer" component={() => <RendererPage />} />
         <Route path="/" component={HomePage} />
       </Switch>
     </App>

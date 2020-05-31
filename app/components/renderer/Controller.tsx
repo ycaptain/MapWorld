@@ -57,4 +57,4 @@ const Controller: React.FC = () => {
   );
 };
 
-export default Controller;
+export { Controller };

@@ -1,15 +1,11 @@
 import React from "react";
 
 const Axes: React.FC = (props) => {
-
   return (
-    <mesh
-    {...props}
-    >
+    <mesh {...props}>
       <axesHelper args={[100]} />
     </mesh>
-  )
+  );
+};
 
-}
-
-export default Axes;
+export { Axes };

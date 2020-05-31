@@ -4,7 +4,7 @@ import { ReactThreeFiber } from "react-three-fiber/three-types";
 import * as THREE from "three";
 import { Coordicate, minus, cross } from "../../utils/Arith";
 
-import { AppState } from '@/reducers';
+import { AppState } from "@/reducers";
 
 const Building: React.FC<IBuilding> = (props) => {
   const { item, ...rest } = props;
@@ -16,7 +16,7 @@ const Building: React.FC<IBuilding> = (props) => {
   const [active, setActive] = useState(false);
 
   const coors = anticlockwise(item.coordinates);
-  const {vertices, averX, averY} = getVertices(coors, item.properties.height);
+  const { vertices, averX, averY } = getVertices(coors, item.properties.height);
   const verticesBuffer = new Float32Array(vertices);
 
   useEffect(() => {
@@ -158,13 +158,11 @@ interface IBuilding
   item: Item;
 }
 
-type Item = {
+export type Item = {
   coordinates: Coordicate[];
   properties: {
     height: number;
   };
 };
 
-export { Item };
-
-export default Building;
+export { Building };

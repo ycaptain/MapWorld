@@ -23,4 +23,4 @@ const Ground: React.FC<IGround> = (props) => {
   );
 };
 
-export default Ground;
+export { Ground };

@@ -1,11 +1,10 @@
 const { app, BrowserWindow, Menu, shell } = require("electron");
 const path = require("path");
-const { RpcClient } = require("./rpc/client");
+require("./ipc");
 
 let menu;
 let template;
 let mainWindow = null;
-let rpcClient;
 
 if (process.env.NODE_ENV === "production") {
   const sourceMapSupport = require("source-map-support");
@@ -26,10 +25,7 @@ app.on("window-all-closed", () => {
 const installExtensions = () => {
   if (process.env.NODE_ENV === "development") {
     const installer = require("electron-devtools-installer");
-    const extensions = [
-      "REACT_DEVELOPER_TOOLS",
-      "REDUX_DEVTOOLS",
-    ];
+    const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 
     return Promise.all(
       extensions.map((name) => installer.default(installer[name]))
@@ -41,26 +37,10 @@ const installExtensions = () => {
 
 app.on("ready", () =>
   installExtensions().then(() => {
-    // rpcClient = new RpcClient();
-    // rpcClient.connect();
-    // (async() => {
-    //   let res = await rpcClient.initialize({config_path: "/Users/ycaptain/workspace/2020/learning/electron/MapWorld/MapWorld-pred/test/testpack/PackedModels.json"});
-    //   res = await rpcClient.doPred({
-    //     imgs_path: [path.join(__dirname, '../../resources/test.png')],
-    //     imgs_meta: [{origin: {x: 0, y: 0}, pixel_size: {x: 748, y: 932}}],
-    //     // model_name: 'Road-Deeplab',
-    //     model_name: 'Building-Deeplab',
-    //     n_gpu_use: 0,
-    //   })
-    //   res = await rpcClient.getTask();
-    //   res = await rpcClient.getTask();
-    //   res = await rpcClient.getTask();
-    //   rpcClient.disconnect();
-    //   console.info(res);
-    // })();
-
     mainWindow = new BrowserWindow({
       show: false,
+      frame: false,
+      titleBarStyle: 'hiddenInset',
       width: 1290,
       height: 800,
       minWidth: 1020,

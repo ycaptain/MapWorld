@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Canvas as RTFCanvas } from "react-three-fiber";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import Fallback from './Fallback';
+import { Fallback } from "./Fallback";
 
 interface ICanvas extends ContainerProps {
   bgColor?: number;
@@ -31,4 +31,4 @@ const Canvas: React.FC<ICanvas> = ({
   );
 };
 
-export default Canvas;
+export { Canvas };

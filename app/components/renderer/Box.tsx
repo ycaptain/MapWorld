@@ -6,7 +6,7 @@ import * as THREE from "three";
 const Box: React.FC<ReactThreeFiber.Object3DNode<
   THREE.Mesh,
   typeof THREE.Mesh
->> = props => {
+>> = (props) => {
   const mesh = useRef<THREE.Mesh>(null);
 
   const [hovered, setHover] = useState(false);
@@ -22,9 +22,9 @@ const Box: React.FC<ReactThreeFiber.Object3DNode<
     <mesh
       ref={mesh}
       scale={active ? [1.5, 1.5, 1.5] : [1, 1, 1]}
-      onClick={e => setActive(!active)}
-      onPointerOver={e => setHover(true)}
-      onPointerOut={e => setHover(false)}
+      onClick={(e) => setActive(!active)}
+      onPointerOver={(e) => setHover(true)}
+      onPointerOut={(e) => setHover(false)}
       {...props}
     >
       <boxBufferGeometry attach="geometry" args={[1.5, 1.5, 1.5]} />
@@ -36,4 +36,4 @@ const Box: React.FC<ReactThreeFiber.Object3DNode<
   );
 };
 
-export default Box;
+export { Box };

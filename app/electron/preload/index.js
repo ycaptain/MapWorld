@@ -5,4 +5,5 @@ process.once('loaded', function() {
 
 window.readCoors = require('./loader').readCoors;
 window.path = require('path');
+window.fs = require('fs');
 window.electron = require('electron');
