@@ -3,14 +3,15 @@ async function loadJSON(filePath) {
   return JSON.parse(raw);
 }
 
-async function readCoors(filePath) {
+async function readJSON(filePath) {
   const data = await loadJSON(filePath);
   const coors = data.buildings.map((building) => ({
     coordinates: building.coordinates,
     properties: building.properties,
   }));
-
-  return coors;
+  const mMeta = data.meta;
+  const roadImgPath = data.roadImg;
+  return {coors, mMeta, roadImgPath};
 }
 
-module.exports = { loadJSON, readCoors };
+module.exports = { loadJSON, readJSON };

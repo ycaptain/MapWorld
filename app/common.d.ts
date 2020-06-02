@@ -21,6 +21,6 @@ declare global {
     path: typeof path;
     fs: typeof fs;
     electron: typeof electron;
-    readCoors: (filePath: string) => Promise<Item[]>;
+    readJSON: (filePath: string) => Promise<{coors:Item[]; mMeta:string; roadImgPath:string}>;
   }
 }

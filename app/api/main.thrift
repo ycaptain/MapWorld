@@ -1,3 +1,4 @@
+namespace py mwfrontend
 exception Exception {
   1: string message
 }
