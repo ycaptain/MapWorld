@@ -13,7 +13,6 @@ interface XY {
 
 interface GeoMeta {
   origin: XY;
-  pixelSize: XY;
 }
 
 interface PredRequest {
@@ -32,6 +31,13 @@ export const IpcChannels = {
   DO_PRED: "DO_PRED",
   DESTORY_CLIENT: "DESTORY_CLIENT",
   GET_TASK: "GET_TASK",
+
+  NOTIFY_PROGRESS: 'NOTIFY_PROGRESS',
+  NOTIFY_LOAD_CHECKPOINT: 'NOTIFY_LOAD_CHECKPOINT',
+  NOTIFY_START_THREAD: 'NOTIFY_START_THREAD',
+  NOTIFY_PRED_IMG: 'NOTIFY_PRED_IMG',
+  NOTIFY_BATCH_PRED: 'NOTIFY_BATCH_PRED',
+  NOTIFY_RESULT: 'NOTIFY_RESULT',
 } as const;
 
 export type ChannelNameTypes = keyof typeof IpcChannels;
@@ -54,4 +60,10 @@ export function destoryClient(): void {
 
 export function getTask(): void {
   ipcRenderer.send(IpcChannels.GET_TASK);
+}
+
+export interface ProgressRequest {
+  total: number;
+  current: number;
+  curr_filename: string;
 }

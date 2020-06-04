@@ -12,6 +12,8 @@ struct ProgsReq {
 struct ResultReq {
   1: string label_path
   2: string json_path
+  3: i8 current
+  4: i8 total
 }
 
 struct Response {
@@ -21,5 +23,14 @@ struct Response {
 
 service MapWorldMain {
     Response NotifyProgress(1: ProgsReq req)
+
+    Response NotifyLoadCheckpoint()
+    Response NotifyStartThread()
+    Response NotifyPredImg(1: i8 count, 2: i8 total)
+    Response NotifyBatchPred(1: i8 count, 2: i8 total)
     Response NotifyResult(1: ResultReq req)
+
+
+
+
 }

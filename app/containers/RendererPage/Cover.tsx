@@ -21,7 +21,6 @@ const Cover: React.FC<Props> = ({ algorithm, setAlgorithm }) => {
   const [showResult, setShowResult] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  console.info('cover load');
   return (
     <div className="absolute w-full h-full top-0 invisible" ref={rootRef}>
       <Up className="ml-4 mt-4">
@@ -30,22 +29,6 @@ const Cover: React.FC<Props> = ({ algorithm, setAlgorithm }) => {
       <Up className="bottom-0 mb-12 transform left-1/2 -translate-x-1/2">
         <Radio algorithm={algorithm} setAlgorithm={setAlgorithm} />
       </Up>
-      {/* <div
-        className={classnames(
-          "hidden relative ml-6 h-1/2 max-w-xs bg-teal-500 top-1/2 transform -translate-y-1/2",
-          { hidden: !showResult }
-        )}
-      >
-        <Up className="w-10 h-10">
-          <PredResult />
-        </Up>
-      </div> */}
-      {/* {rootRef.current && (
-        <Drawer
-          getContainer={rootRef.current}
-          placement="left"
-          visible={showResult}
-        > */}
       <Wrapper
         className={classnames(
         "flex flex-col visible shadow-xl text-gray-500 relative transition-transform duration-300 ease-in-out rounded-lg ml-6 h-3/4 w-80 bg-transparent top-1/2 transform -translate-y-1/2",

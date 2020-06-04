@@ -1,7 +1,7 @@
-const thrift = require("thrift");
-const MapWorldService = require("./service/MapWorldService");
-const ttypes = require("./service/predict_types");
-const { promisify } = require("util");
+const thrift = require('thrift');
+const MapWorldService = require('./service/MapWorldService');
+const ttypes = require('./service/predict_types');
+const { promisify } = require('util');
 
 const transport = thrift.TBufferedTransport;
 const protocol = thrift.TBinaryProtocol;
@@ -13,7 +13,7 @@ class RpcClient {
   }
 
   connect(host, port) {
-    this.conn = thrift.createConnection(host || "localhost", port || 12345, {
+    this.conn = thrift.createConnection(host || '127.0.0.1', port || 8888, {
       transport,
       protocol,
     });
@@ -23,14 +23,14 @@ class RpcClient {
   disconnect() {
     if (this.conn) {
       this.conn.destroy();
-      this.conn = null;
-      this.client = null;
     }
+    this.conn = null;
+    this.client = null;
   }
 }
 
 // promisify
-["initialize", "deinit", "doPred", "getTask"].forEach((func) => {
+['initialize', 'deinit', 'doPred', 'getTask'].forEach(func => {
   RpcClient.prototype[func] = function (...args) {
     return new Promise((resolve, reject) => {
       this.client[func](...args, (err, resp) => {

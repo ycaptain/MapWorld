@@ -1,24 +1,36 @@
-const { ipcMain } = require("electron");
-const { RpcClient } = require("./rpc/client");
-const { IpcChannels } = require("../common/constants/ipc");
+const { ipcMain } = require('electron');
+const { RpcClient } = require('./rpc/client');
+const { RpcServer } = require('./rpc/server');
+const { IpcChannels } = require('../common/constants/ipc');
+const path = require('path');
+const fs = require('fs');
+const os = require('os');
 
-let rpcClient = new RpcClient();
+const { mainWindow } = require('./main.development');
 
-ipcMain.on(IpcChannels.CONNECT_CLIENT, (event) => {
-  rpcClient.connect();
-  event.sender.send(IpcChannels.CONNECT_CLIENT, "success");
-});
+const rpcClient = new RpcClient();
+let rpcServer;
+const port = 7777;
 
-ipcMain.on(
-  IpcChannels.INIT_CLIENT,
-  async (event, { configPath, frAddr, frPort }) => {
-    await rpcClient.initialize({
-      config_path: configPath,
-      fr_addr: frAddr,
-      fr_port: frPort,
-    });
+const initialize = (win) => {
+  if (rpcClient.conn || rpcClient.client) {
+    rpcClient.disconnect();
   }
-);
+
+  rpcServer = new RpcServer(win);
+
+  rpcServer.start(port);
+
+  rpcClient.connect();
+  rpcClient.initialize({
+    config_path: path.resolve(
+      __dirname,
+      '../../MapWorld-pred/test/testpack/PackedModels.json'
+    ),
+    fr_addr: 'localhost',
+    fr_port: port,
+  });
+};
 
 ipcMain.on(
   IpcChannels.DO_PRED,
@@ -26,6 +38,13 @@ ipcMain.on(
     event,
     { imgsPath, imgsMeta, modelName, gpu, tmpOptPath, prescale, batchSize }
   ) => {
+    if (!rpcClient.conn.connected) {
+      initialize();
+    }
+
+    modelName = modelName || 'Building-Deeplab';
+    const folder = await fs.promises.mkdtemp(path.join(os.tmpdir(), modelName));
+    console.debug('tmp folder: ', folder);
     const res = await rpcClient.doPred({
       imgs_path: imgsPath,
       imgs_meta: imgsMeta.map(({ origin, pixelSize }) => ({
@@ -33,27 +52,14 @@ ipcMain.on(
         pixel_size: pixelSize,
       })),
       model_name: modelName,
-      n_gpu_use: gpu,
-      tmp_opt_path: tmpOptPath,
+      n_gpu_use: gpu || 0,
+      tmp_opt_path: tmpOptPath || folder,
       prescale,
       batch_size: batchSize,
     });
     console.info(res);
+    event.sender.send(IpcChannels.DO_PRED, { msg: 'success' });
   }
 );
 
-// (async() => {
-//   let res = ;
-//   res = await rpcClient.doPred({
-//     imgs_path: [path.join(__dirname, '../../resources/test.png')],
-//     imgs_meta: [{origin: {x: 0, y: 0}, pixel_size: {x: 748, y: 932}}],
-//     // model_name: 'Road-Deeplab',
-//     model_name: 'Building-Deeplab',
-//     n_gpu_use: 0,
-//   })
-//   res = await rpcClient.getTask();
-//   res = await rpcClient.getTask();
-//   res = await rpcClient.getTask();
-//   rpcClient.disconnect();
-//   console.info(res);
-// })();
+module.exports = { rpcClient, rpcServer, initialize };

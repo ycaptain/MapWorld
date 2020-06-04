@@ -2,14 +2,8 @@ import React, { useState, useEffect } from "react";
 import { bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import {
-  Canvas,
-  Axes,
-  Controller,
-  Building,
   Item,
-  Ground,
 } from "@/components/renderer";
-import Panel from "./Panel";
 // import Plane from "../components/renderer/Plane";
 // import { ArrowsAltOutlined, ShrinkOutlined } from "@ant-design/icons";
 // import {Button} from 'antd';

@@ -230,16 +230,19 @@ module.exports = {
     height: theme => ({
       auto: 'auto',
       ...theme('spacing'),
+      '1/4': '25%',
       '1/2': '50%',
       '3/4': '75%',
       full: '100%',
       screen: '100vh',
     }),
-    inset: {
+    inset: theme => ({
       '0': '0',
+      ...theme('spacing'),
+      '1/4': '25%',
       '1/2': '50%',
       auto: 'auto',
-    },
+    }),
     letterSpacing: {
       tighter: '-0.05em',
       tight: '-0.025em',
