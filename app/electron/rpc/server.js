@@ -18,26 +18,28 @@ class RpcServer {
         this.win.webContents.send(IpcChannels.NOTIFY_PROGRESS, req);
       },
 
-      NotifyLoadCheckpoint: function (result) {
-        result(null, { code: 0, msg: 'pong' });
-      },
-      NotifyStartThread: function (result) {
-        result(null, { code: 0, msg: 'pong' });
-      },
-      NotifyPredImg: function (count, total, result) {
-        console.debug(count, total);
-        result(null, { code: 0, msg: 'pong' });
-      },
-      NotifyBatchPred: function (count, total, result) {
-        console.debug(count, total);
-        result(null, { code: 0, msg: 'pong' });
-      },
-      NotifyResult: function (req, result) {
+      NotifyPredImg: (req, result) => {
         console.debug(req);
         result(null, { code: 0, msg: 'pong' });
+        this.win.webContents.send(IpcChannels.NOTIFY_PRED_IMG, req);
+      },
+      NotifyBatchPred: (req, result) => {
+        console.debug(req);
+        result(null, { code: 0, msg: 'pong' });
+        this.win.webContents.send(IpcChannels.NOTIFY_BATCH_PRED, req);
+      },
+      NotifyResult: (req, result) => {
+        console.debug(req);
+        result(null, { code: 0, msg: 'pong' });
+        this.win.webContents.send(IpcChannels.NOTIFY_RESULT, req);
       },
     });
     this.server.listen(port || 7777);
+  }
+
+  close() {
+    this.server.close();
+    this.server = null;
   }
 }
 

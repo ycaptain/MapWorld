@@ -11,7 +11,17 @@ type SetPredRequestAction = ReturnType<typeof setPredRequest>;
 type ResetAction = ReturnType<typeof reset>;
 
 export interface RawBuilding {
-  meta: Object;
+  meta: {
+    'origin.x': number,
+    'origin.y': number,
+    w: number,
+    h: number,
+    prescale: number,
+    img_path: string,
+  };
+  roadImg: string,
+  labelImg: string,
+  rawImg: string,
   buildings: Array<{
     coordinates: Array<
       {
@@ -25,6 +35,7 @@ export interface RawBuilding {
 }
 
 export interface PredRequest {
+  id: string;
   imgsPath: Array<{
     filePath: string;
     blob: string;

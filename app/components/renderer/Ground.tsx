@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { TextureLoader, Texture, Mesh } from "three";
-import { ReactThreeFiber } from "react-three-fiber/three-types";
-import { Item, Building } from "./Building";
-import { MixShader } from "./shaders/mixShader"
+import React, { useEffect, useState } from 'react';
+import { TextureLoader, Texture, Mesh } from 'three';
+import { ReactThreeFiber } from 'react-three-fiber/three-types';
+import { Item, Building } from './Building';
+import { MixShader } from './shaders/mixShader';
+import { RawBuilding } from '@/actions/render';
 // import textureUrl from "../../../resources/textures/tuanjiehu.png";
 
 interface IGround extends ReactThreeFiber.Object3DNode<Mesh, typeof Mesh> {
-  sateImage?: Texture;
-  roadImage?: Texture;
-  buildings?: Array<Item>;
+  sateImage: Texture;
+  roadImage: Texture;
+  buildings: Array<Item>;
+  meta: RawBuilding['meta'];
 }
 
-const Ground: React.FC<IGround> = (props) => {
-  const [sateTexture, setSateTexture] = useState<any>(null);
-  const [roadTexture, setRoadTexture] = useState<any>(null);
-
-  useEffect(() => {
-     //setTexture(new TextureLoader().load(props.texture));
-     setSateTexture(props.sateImage);
-     setRoadTexture(props.roadImage);
-  }, [props]);
-
+const Ground: React.FC<IGround> = ({
+  sateImage,
+  roadImage,
+  buildings,
+  meta,
+  ...rest
+}) => {
+  const { 'origin.x': x, 'origin.y': y, w, h } = meta;
+  console.info(meta);
   return (
-    <group {...props}>
-      <mesh>
-        <planeBufferGeometry attach="geometry" args={[100, 100]} />
-        <shaderMaterial attach="material"
+    <group position={[x, y, 0]} {...rest}>
+      <mesh position={[w / 2, h / 2, 0]}>
+        <planeBufferGeometry attach="geometry" args={[w, h]} />
+        <shaderMaterial
+          attach="material"
           args={[MixShader]}
-          uniforms-texture-value={sateTexture}
-          uniforms-texture2-value={roadTexture} />
-        {/* <meshPhongMaterial attach="material" map={texture} /> */}
+          uniforms-texture-value={sateImage}
+          uniforms-texture2-value={roadImage}
+        />
       </mesh>
-      {props.buildings && props.buildings.map((item, idx) => <Building key={idx} item={item} />)}
+      {buildings &&
+        buildings.map((item, idx) => {
+          return <Building key={idx} item={item} />;
+        })}
     </group>
   );
 };

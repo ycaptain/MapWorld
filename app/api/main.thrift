@@ -7,6 +7,8 @@ struct ProgsReq {
   1: i32 total
   2: i32 current
   3: string curr_filename
+  4: string id
+  5: string json_path
 }
 
 struct ResultReq {
@@ -14,6 +16,7 @@ struct ResultReq {
   2: string json_path
   3: i8 current
   4: i8 total
+  5: string id
 }
 
 struct Response {
@@ -21,13 +24,17 @@ struct Response {
   2: optional string msg
 }
 
+struct PredMidReq {
+  1: i8 count
+  2: i8 total
+  3: string id
+}
+
 service MapWorldMain {
     Response NotifyProgress(1: ProgsReq req)
 
-    Response NotifyLoadCheckpoint()
-    Response NotifyStartThread()
-    Response NotifyPredImg(1: i8 count, 2: i8 total)
-    Response NotifyBatchPred(1: i8 count, 2: i8 total)
+    Response NotifyPredImg(1: PredMidReq req)
+    Response NotifyBatchPred(1: PredMidReq req)
     Response NotifyResult(1: ResultReq req)
 
 

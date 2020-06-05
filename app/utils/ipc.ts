@@ -23,6 +23,7 @@ interface PredRequest {
   tmpOptPath?: string;
   prescale?: number;
   batchSize?: number;
+  cycleganType?: 'SatelliteToMap' | 'MapToSatellite'
 }
 
 export const IpcChannels = {
@@ -50,7 +51,7 @@ export function initClient(initRequest: InitRequest): void {
   ipcRenderer.send(IpcChannels.INIT_CLIENT, initRequest);
 }
 
-export function doPred(predRequets: PredRequest): void {
+export function doPred(predRequets: PredRequest[]): void {
   ipcRenderer.send(IpcChannels.DO_PRED, predRequets);
 }
 
@@ -66,4 +67,20 @@ export interface ProgressRequest {
   total: number;
   current: number;
   curr_filename: string;
+  id: string;
+  json_path: string;
+}
+
+export interface ResultRequest {
+  label_path: string;
+  json_path: string;
+  current: number;
+  total: number;
+  id: string;
+}
+
+export interface ProdMidRequest {
+  count: number;
+  total: number;
+  id: string;
 }

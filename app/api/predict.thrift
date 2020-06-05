@@ -30,10 +30,11 @@ struct PredRequest {
   2: list<GeoMeta> imgs_meta
   3: string model_name
   4: i8 n_gpu_use
-  5: optional string tmp_opt_path
-  6: optional double prescale
-  7: optional i8 batch_size
-  8: optional CycleGANType cyclegan_type
+  5: string id
+  6: optional string tmp_opt_path
+  7: optional double prescale
+  8: optional i8 batch_size
+  9: optional CycleGANType cyclegan_type
 }
 
 struct Response {

@@ -16,7 +16,7 @@
     "package-win": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --x64",
     "package-linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
     "package-all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
-    "gen:thrift": "rm -rf app/electron/rpc/service && rm -rf MapWorld-pred/src/mapworld && rm -rf MapWorld-pred/src/main && mkdir app/electron/rpc/service && mkdir MapWorld-pred/src/mapworld && mkdir MapWorld-pred/src/main && npm run gen:thrift-node && npm run gen:thrift-pred",
+    "gen:thrift": "rm -rf app/electron/rpc/service && rm -rf MapWorld-pred/src/mapworld && rm -rf MapWorld-pred/src/mwfrontend && mkdir app/electron/rpc/service && mkdir MapWorld-pred/src/mapworld && mkdir MapWorld-pred/src/mwfrontend && npm run gen:thrift-node && npm run gen:thrift-pred",
     "gen:thrift-node": "thrift -r -out app/electron/rpc/service -gen js:node app/api/predict.thrift && thrift -r -out app/electron/rpc/service -gen js:node app/api/main.thrift",
     "gen:thrift-pred": "thrift -r -out MapWorld-pred/src -gen py app/api/predict.thrift && thrift -r -out MapWorld-pred/src -gen py app/api/main.thrift",
     "reset": "rm -rf node_modules",

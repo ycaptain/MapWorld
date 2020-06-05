@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +9,12 @@ import { bounce } from 'react-animations';
 
 const bounceAnimation = keyframes`${bounce}`;
 
-const BounceBtn = styled(Button)<{hover: boolean}>`
-  ${({hover}) => hover && css`animation: 1s ${bounceAnimation};`}
+const BounceBtn = styled(Button)<{ hover: boolean }>`
+  ${({ hover }) =>
+    hover &&
+    css`
+      animation: 1s ${bounceAnimation};
+    `}
 `;
 interface Props {
   className?: string;
@@ -19,7 +23,6 @@ interface Props {
 }
 
 const Title: React.FC<Props> = ({ className, openPredPanel, ...rest }) => {
-
   return (
     <div
       className={classnames(
@@ -39,20 +42,20 @@ const Title: React.FC<Props> = ({ className, openPredPanel, ...rest }) => {
           Map World
         </h2>
         {/* <Link to="/renderer"> */}
-          <div className="mt-4">
-            <Button
-              type={'primary'}
-              className={
-                'hover:text-white transform hover:scale-125 hover:bg-teal-500 bg-teal-700 border border-teal-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal'
-              }
-              onClick={e => {
-                e.stopPropagation();
-                openPredPanel();
-              }}
-            >
-              Start!
-            </Button>
-          </div>
+        <div className="mt-4">
+          <Button
+            type={'primary'}
+            className={
+              'hover:text-white transform hover:scale-125 hover:bg-teal-500 bg-teal-700 border border-teal-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal'
+            }
+            onClick={e => {
+              e.stopPropagation();
+              openPredPanel();
+            }}
+          >
+            Start!
+          </Button>
+        </div>
         {/* </Link> */}
       </div>
     </div>

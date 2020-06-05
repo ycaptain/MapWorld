@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Back, Radio, Up, PredResult } from "@/components";
-import { AlgorithmTypes } from "./";
 import classnames from "classnames";
 import {
   faTimesCircle,
@@ -12,12 +11,8 @@ const Wrapper = styled.div`
   background: rgba(10, 10, 10, 0.5);
 `;
 
-interface Props {
-  algorithm: AlgorithmTypes;
-  setAlgorithm: (algorithm: AlgorithmTypes) => void;
-}
 
-const Cover: React.FC<Props> = ({ algorithm, setAlgorithm }) => {
+const Cover: React.FC = () => {
   const [showResult, setShowResult] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -25,9 +20,6 @@ const Cover: React.FC<Props> = ({ algorithm, setAlgorithm }) => {
     <div className="absolute w-full h-full top-0 invisible" ref={rootRef}>
       <Up className="ml-4 mt-4">
         <Back />
-      </Up>
-      <Up className="bottom-0 mb-12 transform left-1/2 -translate-x-1/2">
-        <Radio algorithm={algorithm} setAlgorithm={setAlgorithm} />
       </Up>
       <Wrapper
         className={classnames(
@@ -48,12 +40,6 @@ const Cover: React.FC<Props> = ({ algorithm, setAlgorithm }) => {
           <div className="w-full text-center font-medium text-lg">Analyzation</div>
         </header>
 
-        <div className="w-full mb-2">
-          <PredResult />
-        </div>
-        <div className="w-full mb-2">
-          <PredResult />
-        </div>
         <div className="w-full mb-2">
           <PredResult />
         </div>
