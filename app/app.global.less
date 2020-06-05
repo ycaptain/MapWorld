@@ -1,11 +1,12 @@
-@tailwind base;
+@import "tailwindcss/base";
 
-@tailwind components;
+@import "tailwindcss/components";
 
-@tailwind utilities;
+@import "tailwindcss/utilities";
 
 * {
   user-select: none;
+  letter-spacing: 0.4px;
 }
 
 span > svg {
@@ -15,4 +16,10 @@ span > svg {
 button,
 button:focus {
   outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

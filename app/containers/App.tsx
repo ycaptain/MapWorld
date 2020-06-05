@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import { Titlebar } from "@/components";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+const App: React.FC = ({ children }) => {
+  return (
+    <div className="flex flex-col w-screen h-screen">
+      <Titlebar />
+      {children}
+    </div>
+  );
+};
+
+export default App;

@@ -1,17 +1,16 @@
-import * as React from 'react';
-import * as Redux from 'react-redux';
-import { History } from 'history';
+import React from "react";
+import { History } from "history";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import Routes from "../routes";
+import { Store } from "@/reducers/render";
 
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import Routes from '../routes';
+interface Props {
+  store: Store;
+  history: History;
+}
 
-interface IRootType {
-  store: Redux.Store<any>;
-  history: History
-};
-
-export default function Root({ store, history }: IRootType) {
+export default function Root({ store, history }: Props) {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>

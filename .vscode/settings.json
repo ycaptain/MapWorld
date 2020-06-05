@@ -105,6 +105,5 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
   },
-  "emmet.triggerExpansionOnTab": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "emmet.triggerExpansionOnTab": true
 }

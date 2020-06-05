@@ -12,7 +12,7 @@ const tsImportPluginFactory = require('ts-import-plugin')
 module.exports = {
   module: {
     rules: [{
-      test: /\.tsx?$/,
+      test: /\.ts(x)?$/,
       loaders: [{
         loader: 'react-hot-loader/webpack'
       },
@@ -49,7 +49,10 @@ module.exports = {
     modules: [
       path.join(__dirname, 'app'),
       'node_modules',
-    ]
+    ],
+    alias: {
+      '@': path.join(__dirname, '../app')
+    }
   },
 
   plugins: [],

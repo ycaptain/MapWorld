@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "app",
     "paths": {
-      "@test": ["app/components/*"]
+      "@*": ["./*"]
     },
     "lib": ["dom", "es6", "dom.iterable"],
     "types": [],
@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "module": "esnext",
     "jsx": "react",
+    "allowJs": true,
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -31,5 +32,5 @@
     "test/**/*.tsx",
     "node_modules/@types/**/*.d.ts"
   ],
-  "exclude": ["dist"]
+  "exclude": ["dist", "node_modules/"]
 }

@@ -1,0 +1,1 @@
+{"meta": {"origin.x": 0.0, "origin.y": 0.0, "pixel_size.x": 1.0, "pixel_size.y": -1.0, "w": 325, "h": 325, "prescale": 1.0}, "buildings": [{"coordinates": [{"x": 11, "y": 18, "z": 0}, {"x": 11, "y": 21, "z": 0}, {"x": 15, "y": 21, "z": 0}, {"x": 15, "y": 18, "z": 0}], "properties": {"height": 2}}]}

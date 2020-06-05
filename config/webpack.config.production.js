@@ -4,11 +4,13 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const baseConfig = require("./webpack.config.base");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const extractLib = new ExtractTextPlugin("./styles/lib.css");
 const extractUserGlobal = new ExtractTextPlugin("./styles/global.css");
 const extractUser = new ExtractTextPlugin("./styles/style.css");
 
+// FIXME: img load
 module.exports = merge(baseConfig, {
   mode: "production",
 
@@ -98,17 +100,6 @@ module.exports = merge(baseConfig, {
         }),
         exclude: /node_modules\/antd/,
       },
-      // {
-      //   test: /\.(png|jpg|gif|svg)$/,
-      //   use: {
-      //     loader: "file-loader",
-      //     options: {
-      //       limit: 10000,
-      //       mimetype: "image/svg+xml",
-      //       name: '[name].[ext]?[hash]',
-      //     },
-      //   },
-      // },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
@@ -116,6 +107,12 @@ module.exports = merge(baseConfig, {
             loader: '@svgr/webpack',
           },
         ],
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
+        use: {
+          loader: "file-loader",
+        },
       },
     ],
   },
@@ -134,6 +131,9 @@ module.exports = merge(baseConfig, {
       template: "app/public/app.html",
       inject: false,
     }),
+
+    new CopyPlugin([{ from: "./app/electron/preload", to: "./preload"}]),
+
   ],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works

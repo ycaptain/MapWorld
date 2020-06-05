@@ -1,20 +1,19 @@
-import React, { useRef, useState, useEffect } from "react";
-import { ReactThreeFiber } from "react-three-fiber/three-types";
+import React, { useRef, useState, useEffect } from 'react';
+import { ReactThreeFiber } from 'react-three-fiber/three-types';
 
-import * as THREE from "three";
-import { Coordicate, minus, cross } from "../../utils/Arith";
+import * as THREE from 'three';
+import { Coordicate, minus, cross } from '../../utils/Arith';
 
-const Building: React.FC<IBuilding> = (props) => {
+const Building: React.FC<IBuilding> = props => {
   const { item, ...rest } = props;
 
   const mesh = useRef<THREE.Mesh>(null);
   const geo = useRef<THREE.BufferGeometry>(null);
 
-  const [hovered, setHover] = useState(false);
+  // const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
-
   const coors = anticlockwise(item.coordinates);
-  const {vertices, averX, averY} = getVertices(coors, item.properties.height);
+  const { vertices, averX, averY } = getVertices(coors, item.properties.height);
   const verticesBuffer = new Float32Array(vertices);
 
   useEffect(() => {
@@ -28,16 +27,16 @@ const Building: React.FC<IBuilding> = (props) => {
       receiveShadow
       castShadow
       ref={mesh}
-      scale={active ? [1.1, 1.1, 1.1] : [1, 1, 1]}
-      onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
-      position={[averX, averY, 0]}
+      // scale={active ? [1.1, 1.1, 1.1] : [1, 1, 1]}
+      onClick={e => setActive(!active)}
+      // onPointerOver={(e) => setHover(true)}
+      // onPointerOut={(e) => setHover(false)}
+      position={[0, 0, 0]}
       {...rest}
     >
       <bufferGeometry ref={geo} attach="geometry">
         <bufferAttribute
-          attachObject={["attributes", "position"]}
+          attachObject={['attributes', 'position']}
           normalized
           itemSize={3}
           array={verticesBuffer}
@@ -48,15 +47,18 @@ const Building: React.FC<IBuilding> = (props) => {
         attach="material"
         transparent
         opacity={0.6}
-        color={hovered ? "hotpink" : "orange"}
+        color={active ? 'hotpink' : 'orange'}
       />
     </mesh>
   );
 };
 
-function getVertices(coors: Coordicate[], height: number) {
+function getVertices(
+  coors: Coordicate[]
+  // , height: number
+) {
+  const height = 50 + Math.random() * 50;
   const vertices = [];
-
   const { x: averX, y: averY } = coors.reduce((prev, curr) => ({
     x: prev.x + curr.x,
     y: prev.y + curr.y,
@@ -157,13 +159,11 @@ interface IBuilding
   item: Item;
 }
 
-type Item = {
+export type Item = {
   coordinates: Coordicate[];
   properties: {
     height: number;
   };
 };
 
-export { Item };
-
-export default Building;
+export { Building };

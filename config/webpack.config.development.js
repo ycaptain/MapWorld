@@ -113,9 +113,18 @@ module.exports = merge(baseConfig, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: '@svgr/webpack',
+            loader: "@svgr/webpack",
           },
         ],
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 8192,
+          },
+        },
       },
     ],
   },
